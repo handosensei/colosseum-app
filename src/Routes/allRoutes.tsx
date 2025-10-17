@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
+import Dashboard from "../pages/Dashboard";
 //Dashboard
 import DashboardAnalytics from "../pages/DashboardAnalytics";
 import DashboardCrm from "../pages/DashboardCrm";
@@ -492,6 +493,7 @@ const publicRoutes = [
 
 
   { path: "/", component: <Home /> },
+  { path: "/dashboard", component: <Dashboard /> },
 
   // { path: "/auth-pass-change-basic", component: <BasicPasswCreate /> },
   // { path: "/auth-pass-change-cover", component: <CoverPasswCreate /> },
