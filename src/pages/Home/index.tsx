@@ -37,7 +37,6 @@ const Home = () => {
                 <div className="text-center">
                   <h1 style={{fontFamily: "Cinzel, serif"}}>The Colosseum</h1>
                   <Link to="/dashboard" className="btn-primary">Join the Battle</Link>
-                  {/*<button className="btn-primary">Join the Battle</button>*/}
                 </div>
               </Col>
             </Row>
