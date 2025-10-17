@@ -30,12 +30,12 @@ export interface LayoutState {
 }
 
 export const initialState: LayoutState = {
-  layoutType: LAYOUT_TYPES.TWOCOLUMN,
-  layoutModeType: LAYOUT_MODE_TYPES.LIGHTMODE,
-  leftSidebarType: LAYOUT_SIDEBAR_TYPES.LIGHT,
+  layoutType: LAYOUT_TYPES.HORIZONTAL,
+  layoutModeType: LAYOUT_MODE_TYPES.DARKMODE,
+  leftSidebarType: LAYOUT_SIDEBAR_TYPES.DARK,
   layoutWidthType: LAYOUT_WIDTH_TYPES.FLUID,
   layoutPositionType: LAYOUT_POSITION_TYPES.FIXED,
-  topbarThemeType: LAYOUT_TOPBAR_THEME_TYPES.LIGHT,
+  topbarThemeType: LAYOUT_TOPBAR_THEME_TYPES.DARK,
   leftsidbarSizeType: LEFT_SIDEBAR_SIZE_TYPES.DEFAULT,
   leftSidebarViewType: LEFT_SIDEBAR_VIEW_TYPES.DEFAULT,
   leftSidebarImageType: LEFT_SIDEBAR_IMAGE_TYPES.NONE,

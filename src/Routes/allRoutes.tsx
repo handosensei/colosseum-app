@@ -248,7 +248,7 @@ import SlopeCharts from "pages/Charts/ApexCharts/SlopeCharts";
 const authProtectedRoutes = [
   // { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
   // { path: "/dashboard-crm", component: <DashboardCrm /> },
-  { path: "/dashboard", component: <DashboardEcommerce /> },
+  { path: "/dashboard", component: <Dashboard /> },
   // { path: "/index", component: <DashboardEcommerce /> },
   // { path: "/dashboard-crypto", component: <DashboardCrypto /> },
   // { path: "/dashboard-projects", component: <DashboardProject /> },
@@ -493,7 +493,6 @@ const publicRoutes = [
 
 
   { path: "/", component: <Home /> },
-  { path: "/dashboard", component: <Dashboard /> },
 
   // { path: "/auth-pass-change-basic", component: <BasicPasswCreate /> },
   // { path: "/auth-pass-change-cover", component: <CoverPasswCreate /> },
