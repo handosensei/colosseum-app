@@ -1,9 +1,43 @@
 import React, { useEffect } from 'react';
-import { Col, Container, Row } from "reactstrap";
+import {Button, Col, Container, Row} from "reactstrap";
+import {getWalletConnector} from "../../helpers/auth/walletConnector";
 import {Link} from "react-router-dom";
+import {connectWallet} from "../../helpers/auth/authentication";
 
 const Home = () => {
+
   document.title = " Legends | The Colosseum";
+
+  const [buttonLabel, setButtonLabel] = React.useState("Join the Battle");
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  let walletConnector = getWalletConnector();
+
+  const handleConnectWallet = async () => {
+    setButtonLabel("Connecting...");
+    setIsLoading(true);
+    try {
+      await connectWallet();
+      window.location.href = '/dashboard';
+    } catch (error) {
+      console.log(error);
+      setButtonLabel("Join the Battle");
+      setIsLoading(false);
+    }
+  }
+
+  const ButtonConnexion = () => {
+    if (walletConnector.isMetaMaskInstalled()) {
+      return (
+        <Button className="btn-primary" onClick={() => { handleConnectWallet(); }} disabled={isLoading}>{buttonLabel}</Button>
+      );
+    }
+    return (
+      <Link className="btn-primary" to={'https://metamask.io/download'} target="_blank" rel="noopener noreferrer">
+        Install MetaMask to continue
+      </Link>
+    );
+  }
 
   useEffect(() => {
     // Add a page-specific class to body and inject scoped styles
@@ -36,7 +70,7 @@ const Home = () => {
               <Col lg={8} sm={10}>
                 <div className="text-center">
                   <h1 style={{fontFamily: "Cinzel, serif"}}>The Colosseum</h1>
-                  <Link to="/dashboard" className="btn-primary">Join the Battle</Link>
+                  <ButtonConnexion />
                 </div>
               </Col>
             </Row>
