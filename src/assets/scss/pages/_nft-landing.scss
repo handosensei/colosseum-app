@@ -78,16 +78,20 @@
     }
 }
 
-//
 .nft-hero {
-    background-image: url('../../images/nft/bg-home.jpg');
+    position: relative;
+    width: 100%;
+    min-height: 100vh; // prend toute la hauteur de la fenêtre
+    background-image: url('../../images/colosseum/bg-home.png');
     background-size: cover;
-    background-position: bottom;
-    padding: 222px 0 150px 0;
-    .bg-overlay {
-        background-color: #05175f;
-        opacity: 0.85;
-    }
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+
 }
 
 #explorecard-list {

@@ -6,12 +6,14 @@ enum LAYOUT_TYPES {
 };
 
 enum LAYOUT_MODE_TYPES {
-  LIGHTMODE= "light",
+  // LIGHTMODE= "light",
+  LIGHTMODE= "dark",
   DARKMODE= "dark",
 };
 
 enum LAYOUT_SIDEBAR_TYPES {
-  LIGHT= "light",
+  // LIGHT= "light",
+  LIGHT= "dark",
   DARK= "dark",
   GRADIENT= "gradient",
   GRADIENT_2= "gradient-2",
@@ -30,7 +32,8 @@ enum LAYOUT_POSITION_TYPES {
 };
 
 enum LAYOUT_TOPBAR_THEME_TYPES {
-  LIGHT= "light",
+  // LIGHT= "light",
+  LIGHT= "dark",
   DARK= "dark",
 };
 

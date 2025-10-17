@@ -26,9 +26,9 @@ const NonAuthLayout = ({ children }: any) => {
         }
     }, [layoutModeType]);
     return (
-        <div>
+        <React.Fragment>
             {children}
-        </div>
+        </React.Fragment>
     );
 };
 
