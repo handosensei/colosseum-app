@@ -143,7 +143,6 @@ const Layout = (props:any) => {
                     <Footer />
                 </div>
             </div>
-            <RightSidebar />
         </React.Fragment>
 
     );
