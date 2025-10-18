@@ -47,7 +47,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ show, onDeleteClick, onCloseC
         </div>
       </ModalBody>
     </Modal>
-  ) as unknown as JSX.Element;
+  );
 };
 
 export default DeleteModal;
