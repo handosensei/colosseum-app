@@ -1,4 +1,4 @@
-import {json} from "express";
+import { useAuthStore } from '../../store/useAuthStore';
 
 interface EthereumProvider {
   isMetaMask?: boolean;
@@ -18,6 +18,7 @@ class WalletConnector {
   private provider: EthereumProvider | null = null;
   private account: string | null = null;
   private chainId: string | null = null;
+  private user: any | null = null;
 
   // Event handlers (optional)
   public onAccountChanged?: (account: string) => void;
@@ -165,6 +166,9 @@ class WalletConnector {
         walletAddress: cleanWalletAddress,
       };
       sessionStorage.setItem('authUser', JSON.stringify(cleanUser));
+      const setUser = useAuthStore.getState().setUser;
+      setUser(cleanUser);
+      this.user = cleanUser;
 
       return cleanUser;
     } catch (error) {
