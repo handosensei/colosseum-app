@@ -140,7 +140,6 @@ class WalletConnector {
         method: 'personal_sign',
         params: [message, this.account]
       });
-      // console.log('Signature received:', signature);
 
       // Verify signature with server
       const verifyRes = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`, {
@@ -155,7 +154,8 @@ class WalletConnector {
         throw new Error(err.error || 'Verification failed');
       }
 
-      const { user, session } = await verifyRes.json();
+      const { token, user, session } = await verifyRes.json();
+
       if (!user || !session) {
         throw new Error('Verification did not return a user and session');
       }
@@ -165,6 +165,7 @@ class WalletConnector {
         ...user,
         walletAddress: cleanWalletAddress,
       };
+      sessionStorage.setItem('tokenUser', token);
       sessionStorage.setItem('authUser', JSON.stringify(cleanUser));
       const setUser = useAuthStore.getState().setUser;
       setUser(cleanUser);
