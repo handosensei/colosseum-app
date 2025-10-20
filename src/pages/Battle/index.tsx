@@ -498,7 +498,7 @@ const Battle = () => {
             <ModalFooter>
               <Button color="secondary" onClick={closeCreateModal} disabled={creating}>Cancel</Button>
               <Button color="primary" type="submit" disabled={creating}>
-                {creating ? (<><Spinner size="sm" className="me-2" /> Creating...</>) : 'Create'}
+                {creating ? (<><Spinner size="sm" className="me-2" /> Creating....</>) : 'Create'}
               </Button>
             </ModalFooter>
           </Form>
