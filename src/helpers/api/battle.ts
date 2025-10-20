@@ -29,6 +29,27 @@ export const getCollection = async (params: BattleQueryParams = {}): Promise<any
 };
 
 // Optional factory to keep backward compatibility if referenced elsewhere
-export const getApiBattle = () => ({ getCollection });
+export interface CreateBattlePayload {
+  title: string;
+  startTime: string; // ISO string with Z
+  participations: { characterId: string; isWinner: boolean }[];
+}
+
+export const createBattle = async (payload: CreateBattlePayload): Promise<any> => {
+  const token = sessionStorage.getItem("tokenUser");
+  const base = process.env.REACT_APP_BACKEND_URL || "";
+  const response = await fetch(base ? `${base}/battles` : `/battles`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to create battle: ${response.status} ${response.statusText} ${text}`);
+  }
+  return response.json();
+};
+
+export const getApiBattle = () => ({ getCollection, createBattle });
 
 export default getApiBattle;
