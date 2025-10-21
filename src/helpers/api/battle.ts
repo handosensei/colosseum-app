@@ -3,6 +3,13 @@ export interface BattleQueryParams {
   limit?: number;
 }
 
+// Optional factory to keep backward compatibility if referenced elsewhere
+export interface BattleCreatePayload {
+  title: string;
+  startTime: string; // ISO string with Z
+  participations: { characterId: string; isWinner: boolean }[];
+}
+
 export const getCollection = async (params: BattleQueryParams = {}): Promise<any> => {
   const token = sessionStorage.getItem("tokenUser");
   const { page, limit } = params;
@@ -28,14 +35,7 @@ export const getCollection = async (params: BattleQueryParams = {}): Promise<any
   }
 };
 
-// Optional factory to keep backward compatibility if referenced elsewhere
-export interface CreateBattlePayload {
-  title: string;
-  startTime: string; // ISO string with Z
-  participations: { characterId: string; isWinner: boolean }[];
-}
-
-export const createBattle = async (payload: CreateBattlePayload): Promise<any> => {
+export const createBattle = async (payload: BattleCreatePayload): Promise<any> => {
   const token = sessionStorage.getItem("tokenUser");
   const base = process.env.REACT_APP_BACKEND_URL || "";
   const response = await fetch(base ? `${base}/battles` : `/battles`, {
@@ -50,6 +50,20 @@ export const createBattle = async (payload: CreateBattlePayload): Promise<any> =
   return response.json();
 };
 
-export const getApiBattle = () => ({ getCollection, createBattle });
+export const getNext = async (params: BattleQueryParams = {}): Promise<any> => {
+  const token = sessionStorage.getItem("tokenUser");
+  const base = process.env.REACT_APP_BACKEND_URL;
+  const response = await fetch(`${base}/battles/next`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed to create battle: ${response.status} ${response.statusText} ${text}`);
+  }
+  return response.json();
+};
+
+export const getApiBattle = () => ({ getCollection, createBattle, getNext });
 
 export default getApiBattle;
